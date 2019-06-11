@@ -15,6 +15,7 @@ CWordBase::CWordBase(void)
 
 CWordBase::~CWordBase(void)
 {
+	m_strLastError = TEXT("");
 	CoUninitialize();
 }
 

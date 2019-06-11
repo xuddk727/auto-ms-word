@@ -75,7 +75,7 @@ END_MESSAGE_MAP()
 BOOL CWordTestExeDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
+	_CrtDumpMemoryLeaks();
 	// 将“关于...”菜单项添加到系统菜单中。
 
 	// IDM_ABOUTBOX 必须在系统命令范围内。
@@ -189,6 +189,7 @@ void CWordTestExeDlg::OnBnClickedButton1()
 		RTHROW(pFormat->CreateTable(TEXT("表格输入结果"),2,4,vStrResult));
 		RTHROW(pFormat->CreatePicture(TEXT("题注"),TEXT("D:\\ver.png")));
 		RTHROW(pFormat->SaveWord(strTitle));
+		ReleaseResource(pFormat);
 	}
 	catch (...)
 	{
