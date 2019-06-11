@@ -187,6 +187,7 @@ void CWordTestExeDlg::OnBnClickedButton1()
 			
 		}
 		RTHROW(pFormat->CreateTable(TEXT("表格输入结果"),2,4,vStrResult));
+		RTHROW(pFormat->CreatePicture(TEXT("题注"),TEXT("D:\\ver.png")));
 		RTHROW(pFormat->SaveWord(strTitle));
 	}
 	catch (...)

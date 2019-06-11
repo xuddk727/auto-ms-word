@@ -82,9 +82,9 @@ LPDISPATCH CWordBase::GetStyle(CComVariant vt)
 		return styles.Item(&vt);
 
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return NULL;
 	}
 	return NULL;
@@ -111,9 +111,9 @@ bool CWordBase::CreateText( CString strText )
 		return true;
 
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
 	return false;
@@ -139,9 +139,9 @@ bool CWordBase::CreateWord( BOOL bShow)
 
 		return true;
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
 	return false;
@@ -230,9 +230,9 @@ bool CWordFormat::CreateTitle( CString strTitle,int nCountID )
 		return true;
 
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
 	return false;
@@ -270,9 +270,9 @@ bool CWordFormat::CreateSection( CString strSection,int nLevel )
 		
 		return true;
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
 	return false;
@@ -302,9 +302,9 @@ bool CWordFormat::CreateText( CString strText )
 		return true;
 
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
 	return false;
@@ -338,7 +338,7 @@ bool CWordFormat::CreatePicture( CString strDescrption,CString strImgPath )
 		m_pSelection.MoveRight(COleVariant((short)1),COleVariant(short(1)),COleVariant(short(0)));
 		m_pSelection.TypeParagraph();
 
-		pf.SetAlignment(1);
+		/*pf.SetAlignment(1);
 		m_pSelection.SetParagraphFormat(pf);
 		CComVariant varLable(_T("ͼ")),varTitle(strDescrption.GetBuffer()),
 			varTitleAuto(_T("")),varPosition((long)1),varExclude((long)0);
@@ -348,13 +348,13 @@ bool CWordFormat::CreatePicture( CString strDescrption,CString strImgPath )
 		pf.SetAlignment(1);
 		m_pSelection.SetParagraphFormat(pf);
 		m_pSelection.MoveRight(COleVariant((short)1),COleVariant(short(1)),COleVariant(short(0)));
-		m_pSelection.TypeParagraph();
+		m_pSelection.TypeParagraph();*/
 		return true;
 
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
 	return false;
@@ -417,12 +417,11 @@ bool CWordFormat::CreateTable( CString strDescrption,int nRow,int nColume, vecto
 		return true;
 
 	}
-	catch (_com_error* e)
+	catch (COleDispatchException* e)
 	{
-		m_strLastError.Format(TEXT("%s"),e->Description());
+		m_strLastError.Format(TEXT("%s"),e->m_strDescription);
 		return false;
 	}
-	return false;
 	return false;
 }
 
